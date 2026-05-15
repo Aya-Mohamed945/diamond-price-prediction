@@ -1,0 +1,28 @@
+# Preprocessing Configuration
+preprocessing:
+  handle_missing:
+    strategy: "drop"  # drop, fill, or flag
+    fill_value: 
+      numerical: "median"
+      categorical: "mode"
+      
+  outlier_detection:
+    enabled: false
+    method: "iqr"  # iqr, zscore, isolation_forest
+    threshold: 1.5  # IQR multiplier
+    
+  scaling:
+    method: "standard"  # standard, minmax, robust
+    with_mean: true
+    with_std: true
+    
+  encoding:
+    method: "label"  # label, onehot, ordinal
+    handle_unknown: "error"  # error, ignore
+    
+  data_splitting:
+    test_size: 0.2
+    validation_size: 0.1
+    random_state: 42
+    stratify: false
+    shuffle: true

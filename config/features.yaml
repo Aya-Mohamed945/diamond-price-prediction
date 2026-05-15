@@ -1,0 +1,68 @@
+# Feature Engineering Configuration
+feature_groups:
+  base_features:
+    - carat
+    - depth
+    - table
+    - x
+    - y
+    - z
+    
+  quality_features:
+    - cut_encoded
+    - color_encoded
+    - clarity_encoded
+    
+  interaction_features:
+    carat_volume_ratio:
+      enabled: true
+      formula: "carat / (x * y * z)"
+      
+    depth_anomaly:
+      enabled: true
+      formula: "abs(depth - (z / x) * 100)"
+      
+    size_index:
+      enabled: false
+      formula: "(x + y + z) / 3"
+      
+  polynomial_features:
+    enabled: false
+    degree: 2
+    include_bias: false
+    
+  categorical_encodings:
+    cut:
+      mapping:
+        Fair: 0
+        Good: 1
+        Very Good: 2
+        Premium: 3
+        Ideal: 4
+    color:
+      mapping:
+        J: 0
+        I: 1
+        H: 2
+        G: 3
+        F: 4
+        E: 5
+        D: 6
+    clarity:
+      mapping:
+        I1: 0
+        SI2: 1
+        SI1: 2
+        VS2: 3
+        VS1: 4
+        VVS2: 5
+        VVS1: 6
+        IF: 7
+        
+# Feature Selection
+feature_selection:
+  method: "none"  # none, variance_threshold, mutual_info, rfe
+  variance_threshold: 0.01
+  k_best: 8
+  use_correlation_threshold: true
+  correlation_threshold: 0.95

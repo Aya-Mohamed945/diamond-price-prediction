@@ -1,0 +1,107 @@
+# Data Configuration
+data:
+  path: "data/Diamonds - Regression.csv"
+  test_size: 0.2
+  random_state: 42
+  target_column: "price"
+  
+# Feature Configuration
+features:
+  numerical:
+    - carat
+    - depth
+    - table
+    - x
+    - y
+    - z
+  categorical:
+    - cut
+    - color
+    - clarity
+  derived:
+    - carat_per_volume
+    - depth_anomaly
+    - price_per_carat
+    
+# Model Configurations
+models:
+  linear_regression:
+    enabled: true
+    fit_intercept: true
+    positive: false
+    
+  knn:
+    enabled: true
+    n_neighbors: 5
+    weights: "uniform"  # uniform or distance
+    metric: "euclidean"  # euclidean, manhattan, minkowski
+    algorithm: "auto"
+    
+  svr:
+    enabled: true
+    kernel: "rbf"  # rbf, linear, poly
+    C: 1.0
+    epsilon: 0.1
+    gamma: "scale"  # scale, auto
+    
+# Hyperparameter Tuning
+tuning:
+  enabled: true
+  cv_folds: 5
+  scoring: "r2"
+  n_jobs: -1
+  verbose: 1
+  
+  knn_params:
+    n_neighbors: [3, 5, 7, 9, 11, 13, 15]
+    weights: ["uniform", "distance"]
+    metric: ["euclidean", "manhattan", "minkowski"]
+    
+  svr_params:
+    kernel: ["rbf", "linear"]
+    C: [0.1, 1, 10, 50, 100]
+    epsilon: [0.01, 0.05, 0.1, 0.5, 1]
+    gamma: ["scale", "auto", 0.001, 0.01, 0.1]
+    
+  linear_params:
+    fit_intercept: [true, false]
+    positive: [true, false]
+    
+# Training Configuration
+training:
+  save_models: true
+  models_dir: "models/"
+  plots_dir: "plots/"
+  logs_dir: "logs/"
+  
+# Evaluation Metrics
+evaluation:
+  metrics:
+    - mae
+    - mse
+    - rmse
+    - r2
+    - mape  # Mean Absolute Percentage Error
+  cross_validation:
+    enabled: true
+    cv_folds: 5
+    
+# Visualization
+visualization:
+  figure_size: [12, 10]
+  dpi: 300
+  save_figures: true
+  color_palette: "coolwarm"
+  
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/training.log"
+  
+# Deployment
+deployment:
+  model_version: "1.0.0"
+  api_host: "0.0.0.0"
+  api_port: 8000
+  batch_size: 1000

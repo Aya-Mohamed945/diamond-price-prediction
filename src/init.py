@@ -1,0 +1,5 @@
+
+"""Diamond Price Prediction Package"""
+
+__version__ = "1.0.0"
+__author__ = "Aya Mohamed Abd Elazim"
