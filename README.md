@@ -23,7 +23,10 @@ The project follows a professional modular architecture with configurable pipeli
 - [Hyperparameter Tuning](#-hyperparameter-tuning)
 - [Visualizations](#-visualizations)
 - [Future Improvements](#-future-improvements)
+- [Software Engineering Concepts Applied](#-software-engineering-concepts-applied)
+- [GitHub Best Practices Used](#-github-best-practices-used)
 - [Author](#-author)
+- [License](#-license)
 
 ---
 
